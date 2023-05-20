@@ -1,11 +1,11 @@
 package org.OpenCartProject.com;
 
+import Pages.AccountsPage;
 import Pages.HomePage;
 import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
@@ -17,6 +17,7 @@ public class LoginPageTest {
     WebDriver driver = new ChromeDriver();
     HomePage objHomePage = new HomePage(driver);
     LoginPage objLoginPage = new LoginPage(driver);
+    AccountsPage objAccountsPage = new AccountsPage(driver);
 
     Properties prop = new Properties();
     FileInputStream fis;
@@ -28,7 +29,7 @@ public class LoginPageTest {
         }
     }
 
-    @BeforeTest
+    @BeforeSuite
     public void setUp() throws Exception {
         driver. manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -47,14 +48,16 @@ public class LoginPageTest {
     @Test (priority = 2)
     public void logIntoAccount() throws Exception {
         prop.load(fis);
-        objHomePage.clickOnMyAccount();
-        objHomePage.clickOnLoginOption();
         String email = prop.getProperty("EmailId");
         String password = prop.getProperty("Password");
         objLoginPage.loginUser(email, password);
+        String accountsPageUrl = prop.getProperty("AccountsPageUrl");
+        objAccountsPage.verifyAccountsPageUrl(accountsPageUrl);
+        objHomePage.clickOnMyAccount();
+        objLoginPage.seesMyAccountOptionAfterLogin();
     }
 
-    @AfterTest
+    @AfterSuite
     public void closeBrowser() {
         driver.close();
         driver.quit();

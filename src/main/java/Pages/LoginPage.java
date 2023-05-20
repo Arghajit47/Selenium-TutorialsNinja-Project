@@ -10,6 +10,7 @@ public class LoginPage {
     By email = By.id("input-email");
     By password = By.id("input-password");
     By forgottenPassword = By.cssSelector("div[class=\"form-group\"] > a");
+    By myAccountsOptionsAfterLogin = By.xpath("(//ul[@class='dropdown-menu dropdown-menu-right']//a)");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -26,5 +27,10 @@ public class LoginPage {
         driver.findElement(email).sendKeys(emailId);
         driver.findElement(password).sendKeys(Password);
         driver.findElement(loginButton).click();
+    }
+    public void seesMyAccountOptionAfterLogin() {
+        for (int i = 0; i < 5; i++) {
+            driver.findElements(myAccountsOptionsAfterLogin).get(i).isDisplayed();
+        }
     }
 }
