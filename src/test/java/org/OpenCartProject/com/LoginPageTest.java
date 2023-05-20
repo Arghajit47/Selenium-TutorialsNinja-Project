@@ -37,14 +37,14 @@ public class LoginPageTest {
         driver.get(url);
     }
 
-    @Test
+    @Test (priority = 1)
     public void verifyLoginPage() {
         objHomePage.clickOnMyAccount();
         objHomePage.clickOnLoginOption();
         objLoginPage.validateLoginPage();
 
     }
-    @Test
+    @Test (priority = 2)
     public void logIntoAccount() throws Exception {
         prop.load(fis);
         objHomePage.clickOnMyAccount();

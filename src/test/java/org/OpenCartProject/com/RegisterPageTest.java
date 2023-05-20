@@ -2,6 +2,7 @@ package org.OpenCartProject.com;
 
 import Pages.HomePage;
 import Pages.RegisterAccountPage;
+import net.bytebuddy.build.Plugin;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
@@ -10,7 +11,6 @@ import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -37,14 +37,14 @@ public class RegisterPageTest {
         driver.get(url);
     }
 
-    @Test
+    @Test (priority = 1)
     public void verifyRegisterPage() {
         objHomePage.clickOnMyAccount();
         objHomePage.clickOnRegisterOption();
         objRegisterPage.validateRegisterPage();
 
     }
-    @Test
+    @Test (priority = 2)
     public void createAccount() throws Exception {
         prop.load(fis);
         objHomePage.clickOnMyAccount();
@@ -53,7 +53,8 @@ public class RegisterPageTest {
         String lastName = prop.getProperty("Last_Name");
         String email = prop.getProperty("EmailId");
         String password = prop.getProperty("Password");
-        objRegisterPage.registerUser(firstName, lastName, email, password);
+        String phoneNumber = prop.getProperty("PhoneNumber");
+        objRegisterPage.registerUser(firstName, lastName, email, password, phoneNumber);
     }
 
     @AfterTest

@@ -9,19 +9,19 @@ public class HomePage {
 
     By homePageLogo = By.id("logo");
     By searchBar = By.id("search");
-    By cartButton = By.id("header-cart");
+    By cartButton = By.id("cart");
     By currencyOption = By.id("form-currency");
     By contactNumber = By.cssSelector("ul > li > span");
-    By myAccountOption = By.cssSelector("ul > li[class=\"list-inline-item\"] > div");
+    By myAccountOption = By.cssSelector("a[title='My Account']");
     By wishList = By.id("wishlist-total");
-    By shoppingCart = By.cssSelector("ul > li[class=\"list-inline-item\"] > a[title=\"Shopping Cart\"]");
-    By checkout = By.cssSelector("ul > li[class=\"list-inline-item\"] > a[title=\"Checkout\"]");
-    By navbarManuOptions = By.cssSelector("#narbar-menu > ul > li");
-    By featuredElements = By.cssSelector("div > div[class=\"col\"] > form");
+    By shoppingCart = By.cssSelector("a[title='Shopping Cart']");
+    By checkout = By.cssSelector("a[title='Checkout']");
+    By navbarManuOptions = By.cssSelector("#menu > div > ul > li");
+    By featuredElements = By.cssSelector("div#content>div:nth-of-type(2)>div>div");
     By banner1 = By.cssSelector("img[alt=\"iPhone 6\"]");
     By banner2 = By.cssSelector("img[alt=\"MacBookAir\"]");
-    By previousButton = By.cssSelector("button[data-bs-slide=\"prev\"]");
-    By nextButton = By.cssSelector("button[data-bs-slide=\"next\"]");
+    By previousButton = By.className("swiper-button-prev");
+    By nextButton = By.className("swiper-button-next");
     By registerOption = By.xpath("//a[contains(text(),'Register')]");
     By loginOption = By.xpath("//a[contains(text(),'Login')]");
 

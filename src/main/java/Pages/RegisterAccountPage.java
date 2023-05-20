@@ -5,18 +5,20 @@ import org.openqa.selenium.WebDriver;
 
 public class RegisterAccountPage {
     WebDriver driver;
-    By topBarHomeOption = By.xpath("(//li[@class='breadcrumb-item'])[1]");
-    By topBarAccountOption = By.xpath("(//li[@class='breadcrumb-item'])[2]");
-    By getTopBarRegisterOption = By.xpath("(//li[@class='breadcrumb-item'])[3]");
+    By topBarHomeOption = By.xpath("//ul[@class='breadcrumb']//i[1]");
+    By topBarAccountOption = By.xpath("(//ul[@class='breadcrumb']//a)[2]");
+    By getTopBarRegisterOption = By.xpath("(//ul[@class='breadcrumb']//a)[3]");
     By loginPageText = By.xpath("//a[contains(text(),'login page')]");
     By firstNamePlaceholder = By.id("input-firstname");
     By lastNamePlaceholder = By.id("input-lastname");
     By emailPlaceholder = By.id("input-email");
+    By telephoneNumber = By.id("input-telephone");
     By passwordPlaceholder = By.id("input-password");
-    By newsletterYes = By.id("input-newsletter-yes");
-    By newsletterNo = By.id("input-newsletter-no");
+    By confirmPassword = By.id("input-confirm");
+    By newsletterYes = By.xpath("(//input[@name='newsletter'])[1]");
+    By newsletterNo = By.xpath("(//input[@name='newsletter'])[2]");
     By privacyPolicyCheckBox = By.name("agree");
-    By continueButton = By.cssSelector("button[type='submit']");
+    By continueButton = By.cssSelector("input[type='submit']");
     By columnRightOptions = By.cssSelector("aside#column-right>div>a");
 
     public RegisterAccountPage(WebDriver driver) {
@@ -31,7 +33,9 @@ public class RegisterAccountPage {
         driver.findElement(firstNamePlaceholder).isDisplayed();
         driver.findElement(lastNamePlaceholder).isDisplayed();
         driver.findElement(emailPlaceholder).isDisplayed();
+        driver.findElement(telephoneNumber).isDisplayed();
         driver.findElement(passwordPlaceholder).isDisplayed();
+        driver.findElement(confirmPassword).isDisplayed();
         driver.findElement(newsletterYes).isDisplayed();
         driver.findElement(newsletterNo).isSelected();
         driver.findElement(privacyPolicyCheckBox).isDisplayed();
@@ -40,10 +44,13 @@ public class RegisterAccountPage {
            driver.findElements(columnRightOptions).get(i).isDisplayed();
         }
     }
-    public void registerUser(String firstName, String lastName, String email, String password) {
+    public void registerUser(String firstName, String lastName, String email, String password, String phoneNumber) {
         driver.findElement(firstNamePlaceholder).sendKeys(firstName);
         driver.findElement(lastNamePlaceholder).sendKeys(lastName);
         driver.findElement(emailPlaceholder).sendKeys(email);
+        driver.findElement(telephoneNumber).sendKeys(phoneNumber);
+        driver.findElement(passwordPlaceholder).sendKeys(password);
+        driver.findElement(confirmPassword).sendKeys(password);
         driver.findElement(newsletterYes).click();
         driver.findElement(newsletterYes).isSelected();
         driver.findElement(privacyPolicyCheckBox).click();
