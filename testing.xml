@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="loan_department">
+    <test name="Personal_loan">
+        <classes>
+            <class name="org.OpenCartProject.com.HomePageTest"/>
+            <class name="org.OpenCartProject.com.RegisterPageTest"/>
+            <class name="org.OpenCartProject.com.LoginPageTest"/>
+            <class name="org.OpenCartProject.com.AccountsPageTest"/>
+            <class name="org.OpenCartProject.com.AddressPageTest"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->
