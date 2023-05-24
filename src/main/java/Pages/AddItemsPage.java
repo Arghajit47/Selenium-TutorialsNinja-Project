@@ -2,6 +2,8 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class AddItemsPage {
     WebDriver driver;
@@ -16,7 +18,16 @@ public class AddItemsPage {
     By compareButton = By.cssSelector("button[data-original-title=\"Compare this Product\"]");
     By sortByOption = By.id("input-sort");
     By dataElementShowButton = By.id("input-limit");
-
+    By radioButtons = By.cssSelector("input[name=\"option[218]\"]");
+    By checkboxButtons = By.cssSelector("input[name=\"option[223][]\"]");
+    By textPlaceholder = By.id("input-option208");
+    By selectDropdown = By.id("input-option217");
+    By textAreaPlaceholder = By.id("input-option209");
+    By dateField = By.id("input-option219");
+    By timeField = By.id("input-option221");
+    By dateAndTimeField = By.id("input-option220");
+    By quantityField = By.id("input-quantity");
+    By addToCartButtonInProductPage = By.id("button-cart");
 
 
 
@@ -51,7 +62,32 @@ public class AddItemsPage {
         driver.findElement(dataElementShowButton).isDisplayed();
     }
     public void clickOnProduct() {
-        driver.findElements(addToCartButton).get(0).isDisplayed();
+        driver.findElements(addToCartButton).get(0).click();
     }
-
+    public void seesProductPageAndAddToCart() {
+        driver.getCurrentUrl().equals("https://tutorialsninja.com/demo/index.php?route=product/product&product_id=42");
+        driver.findElement(addToWishListButton).isDisplayed();
+        driver.findElement(compareButton).isDisplayed();
+        for (int i = 0; i < 2; i++) {
+            driver.findElements(radioButtons).get(i).isDisplayed();
+        }
+        driver.findElements(radioButtons).get(0).isDisplayed();
+        for (int i = 0; i < 3; i++) {
+            driver.findElements(checkboxButtons).get(i).isDisplayed();
+        }
+        driver.findElements(checkboxButtons).get(2).isDisplayed();
+        driver.findElement(textPlaceholder).sendKeys("Selenium WebDriver is doing everything");
+        WebElement selectElements = driver.findElement(selectDropdown);
+        Select select = new Select(selectElements);
+        select.selectByValue("4");
+        driver.findElement(textAreaPlaceholder).sendKeys("Input from keyboard into this textarea");
+        driver.findElement(dateField).clear();
+        driver.findElement(dateField).sendKeys("2023-05-24");
+        driver.findElement(timeField).clear();
+        driver.findElement(timeField).sendKeys("10:00");
+        driver.findElement(dateAndTimeField).clear();
+        driver.findElement(dateAndTimeField).sendKeys("2023-05-24 10:00");
+        driver.findElement(quantityField).getAttribute("value").equals("2");
+        driver.findElement(addToCartButtonInProductPage).click();
+    }
 }

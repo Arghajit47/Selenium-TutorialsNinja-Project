@@ -54,7 +54,7 @@ public class AddItemsTest {
     @Test(priority = 2)
     public void addAppleCinemaToCart() {
         objAddItemsPage.clickOnProduct();
-
+        objAddItemsPage.seesProductPageAndAddToCart();
     }
 
 
