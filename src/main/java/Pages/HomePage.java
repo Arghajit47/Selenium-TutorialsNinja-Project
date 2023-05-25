@@ -7,7 +7,7 @@ public class HomePage {
 
     WebDriver driver;
 
-    By homePageLogo = By.id("logo");
+    By homePageLogo = By.cssSelector("div#logo>h1>a");
     By searchBar = By.id("search");
     By cartButton = By.id("cart");
     By currencyOption = By.id("form-currency");
@@ -66,6 +66,9 @@ public class HomePage {
     }
     public void clickOnLoginOption() {
         driver.findElement(loginOption).click();
+    }
+    public void getBackToHomePage() {
+        driver.findElement(homePageLogo).click();
     }
 
 }

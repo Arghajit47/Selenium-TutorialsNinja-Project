@@ -1,8 +1,9 @@
-package org.OpenCartProject.com;
+package org.TutorialsNinjaProject.com;
 
 import Pages.AddItemsPage;
 import Pages.HomePage;
 import Pages.LoginPage;
+import Pages.OrderItemPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
@@ -14,11 +15,11 @@ import java.io.FileNotFoundException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class AddItemsTest {
+public class OrderItemTest {
     WebDriver driver = new ChromeDriver();
     HomePage objHomePage = new HomePage(driver);
     LoginPage objLoginPage = new LoginPage(driver);
-    AddItemsPage objAddItemsPage = new AddItemsPage(driver);
+    OrderItemPage objOrderItemPage = new OrderItemPage(driver);
 
     Properties prop = new Properties();
     FileInputStream fis;
@@ -44,18 +45,14 @@ public class AddItemsTest {
         objLoginPage.loginUser(email, password);
     }
     @Test(priority = 1)
-    public void verifyDesktopsPage() {
-        objAddItemsPage.seesDesktopsButton();
-        objAddItemsPage.clickOnDesktopsButton();
-        objAddItemsPage.seesDesktopsOption();
-        objAddItemsPage.clickOnAllDesktops();
-        objAddItemsPage.seesDesktopsPage();
+    public void verifyCart() {
+       objOrderItemPage.seesAndClickOnCartButton();
+       objOrderItemPage.seesProductInCart();
+       objOrderItemPage.goToCheckOut();
+        objOrderItemPage.confirmOrder();
+        objOrderItemPage.seesOrderConfirmedSuccessfully();
     }
-    @Test(priority = 2)
-    public void addAppleCinemaToCart() {
-        objAddItemsPage.clickOnProduct();
-        objAddItemsPage.seesProductPageAndAddToCart();
-    }
+
 
 
     @AfterSuite

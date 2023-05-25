@@ -1,21 +1,23 @@
-package org.OpenCartProject.com;
+package org.TutorialsNinjaProject.com;
 
+import Pages.AccountsPage;
 import Pages.HomePage;
 import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class AccountsPageTest {
+public class LoginPageTest {
     WebDriver driver = new ChromeDriver();
     HomePage objHomePage = new HomePage(driver);
     LoginPage objLoginPage = new LoginPage(driver);
-    Pages.AccountsPage objAccountsPage = new Pages.AccountsPage(driver);
+    AccountsPage objAccountsPage = new AccountsPage(driver);
 
     Properties prop = new Properties();
     FileInputStream fis;
@@ -34,21 +36,26 @@ public class AccountsPageTest {
         prop.load(fis);
         String url = prop.getProperty("Url");
         driver.get(url);
+    }
+
+    @Test (priority = 1)
+    public void verifyLoginPage() {
         objHomePage.clickOnMyAccount();
         objHomePage.clickOnLoginOption();
+        objLoginPage.validateLoginPage();
+
+    }
+    @Test (priority = 2)
+    public void logIntoAccount() throws Exception {
+        prop.load(fis);
         String email = prop.getProperty("EmailId");
         String password = prop.getProperty("Password");
         objLoginPage.loginUser(email, password);
-    }
-
-    @Test(priority = 1)
-    public void verifyAccountsPage() {
-        objAccountsPage.validateMyAccountPage();
+        String accountsPageUrl = prop.getProperty("AccountsPageUrl");
+        objAccountsPage.verifyAccountsPageUrl(accountsPageUrl);
         objHomePage.clickOnMyAccount();
         objLoginPage.seesMyAccountOptionAfterLogin();
-
     }
-
 
     @AfterSuite
     public void closeBrowser() {
