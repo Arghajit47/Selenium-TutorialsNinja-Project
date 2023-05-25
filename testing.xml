@@ -3,11 +3,13 @@
 <suite name="loan_department">
     <test name="Personal_loan">
         <classes>
-            <class name="org.OpenCartProject.com.HomePageTest"/>
-            <class name="org.OpenCartProject.com.RegisterPageTest"/>
-            <class name="org.OpenCartProject.com.LoginPageTest"/>
-            <class name="org.OpenCartProject.com.AccountsPageTest"/>
-            <class name="org.OpenCartProject.com.AddressPageTest"/>
+            <class name="org.TutorialsNinjaProject.com.HomePageTest"/>
+            <class name="org.TutorialsNinjaProject.com.RegisterPageTest"/>
+            <class name="org.TutorialsNinjaProject.com.LoginPageTest"/>
+            <class name="org.TutorialsNinjaProject.com.AccountsPageTest"/>
+            <class name="org.TutorialsNinjaProject.com.AddressPageTest"/>
+            <class name="org.TutorialsNinjaProject.com.AddItemsTest"/>
+            <class name="org.TutorialsNinjaProject.com.OrderItemTest"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -1,4 +1,4 @@
-package org.OpenCartProject.com;
+package org.TutorialsNinjaProject.com;
 
 import Pages.*;
 import org.openqa.selenium.WebDriver;

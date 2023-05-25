@@ -1,23 +1,22 @@
-package org.OpenCartProject.com;
+package org.TutorialsNinjaProject.com;
 
-import Pages.AccountsPage;
+import Pages.AddItemsPage;
 import Pages.HomePage;
 import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class LoginPageTest {
+public class AddItemsTest {
     WebDriver driver = new ChromeDriver();
     HomePage objHomePage = new HomePage(driver);
     LoginPage objLoginPage = new LoginPage(driver);
-    AccountsPage objAccountsPage = new AccountsPage(driver);
+    AddItemsPage objAddItemsPage = new AddItemsPage(driver);
 
     Properties prop = new Properties();
     FileInputStream fis;
@@ -35,27 +34,24 @@ public class LoginPageTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         prop.load(fis);
         String url = prop.getProperty("Url");
-        driver.get(url);
-    }
-
-    @Test (priority = 1)
-    public void verifyLoginPage() {
-        objHomePage.clickOnMyAccount();
-        objHomePage.clickOnLoginOption();
-        objLoginPage.validateLoginPage();
-
-    }
-    @Test (priority = 2)
-    public void logIntoAccount() throws Exception {
-        prop.load(fis);
         String email = prop.getProperty("EmailId");
         String password = prop.getProperty("Password");
-        objLoginPage.loginUser(email, password);
-        String accountsPageUrl = prop.getProperty("AccountsPageUrl");
-        objAccountsPage.verifyAccountsPageUrl(accountsPageUrl);
+        driver.get(url);
         objHomePage.clickOnMyAccount();
-        objLoginPage.seesMyAccountOptionAfterLogin();
+        objHomePage.clickOnLoginOption();
+        objLoginPage.loginUser(email, password);
     }
+    @Test(priority = 1)
+    public void verifyPhonesAndPDAsPage() {
+        objAddItemsPage.seesAndClickOnPhoneAndPDAOption();
+        objAddItemsPage.seesPhoneAndPDAsPage();
+    }
+    @Test(priority = 2)
+    public void addHtcTouchHdToCart() {
+        objAddItemsPage.AddToCart();
+        objAddItemsPage.verifyProductAddedToCartSuccessfully();
+    }
+
 
     @AfterSuite
     public void closeBrowser() {
