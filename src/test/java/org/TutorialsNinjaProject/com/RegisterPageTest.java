@@ -20,7 +20,9 @@ public class RegisterPageTest {
     FileInputStream fis;
     {
         try {
-            fis = new FileInputStream("/home/arghas/IdeaProjects/Selenium-OpenCart-Project/src/test/java/org/OpenCartProject/com/Data.properties");
+            String currentDirectory = System.getProperty("user.dir");
+            System.out.println("Current Directory: " + currentDirectory);
+            fis = new FileInputStream(currentDirectory + "/src/test/java/org/TutorialsNinjaProject/com/Data.properties");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
